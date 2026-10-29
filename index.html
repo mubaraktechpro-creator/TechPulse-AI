@@ -2,9 +2,14 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>TechPulse AI — Admin Control & Ads Manager</title>
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TechPulse AI — AI News & Modern Technology</title>
+  <meta name="description" content="সর্বশেষ AI নিউজ, দরকারি AI tools review, প্রযুক্তি ট্রেন্ড এবং সহজ How-to tutorial পড়ুন TechPulse AI-তে।">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="TechPulse AI — Future of AI & Technology">
+  <meta property="og:description" content="AI news, smart tools analysis, and practical tech tutorials.">
+  <meta property="og:type" content="website">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,1304 +17,1332 @@
   <style>
     :root {
       --bg: #070a13;
-      --panel: #0e1526;
-      --line: #1e2c4a;
+      --bg-card: #0e1526;
+      --bg-card-hover: #131c33;
+      --border: #1e2c4a;
+      --border-bright: #324775;
       --text: #f8fafc;
-      --muted: #94a3b8;
-      --dim: #64748b;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
       --accent: #6366f1;
+      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #38bdf8 100%);
       --cyan: #38bdf8;
-      --red: #ff5270;
-      --green: #10b981;
-      --amber: #f59e0b;
-      --radius: 16px;
-      --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      --cyan-glow: rgba(56, 189, 248, 0.15);
+      --purple-glow: rgba(99, 102, 241, 0.15);
+      --radius: 18px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       background-color: var(--bg);
       background-image: 
-        radial-gradient(circle at 10% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 35%),
-        radial-gradient(circle at 90% 20%, rgba(56, 189, 248, 0.12) 0%, transparent 40%);
+        radial-gradient(circle at 15% 15%, var(--purple-glow) 0%, transparent 35%),
+        radial-gradient(circle at 85% 25%, var(--cyan-glow) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 90%, rgba(14, 21, 38, 0.7) 0%, transparent 60%);
       background-attachment: fixed;
       color: var(--text);
       font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
-      line-height: 1.6;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
 
     a { color: inherit; text-decoration: none; }
-    .layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+    .wrap { max-width: 1200px; margin: auto; padding: 0 24px; }
 
-    .side {
-      padding: 28px 20px;
-      border-right: 1px solid var(--line);
-      background: rgba(11, 16, 29, 0.85);
-      backdrop-filter: blur(14px);
-    }
-    .brand {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.6px;
-      margin: 0 0 34px;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-    .brand-dot {
-      width: 9px; height: 9px;
-      background: var(--cyan);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--cyan);
-    }
-    .brand span {
-      background: linear-gradient(135deg, #6366f1, #38bdf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .side a.nav-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted);
-      padding: 12px 14px;
-      border-radius: 12px;
-      margin: 6px 0;
-      font-size: 14px;
-      font-weight: 500;
-      transition: var(--transition);
-      cursor: pointer;
-    }
-    .side a.nav-link:hover {
-      background: rgba(99, 102, 241, 0.12);
-      color: #fff;
-    }
-    .side a.nav-link.active {
-      background: linear-gradient(120deg, rgba(99, 102, 241, 0.25), rgba(56, 189, 248, 0.2));
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: #fff;
-      font-weight: 700;
-    }
-    .side small {
-      display: block;
-      color: var(--dim);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin: 28px 12px 8px;
-    }
-
-    .main { padding: 32px; max-width: 1320px; width: 100%; margin: auto; }
     .top {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(7, 10, 19, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 25px;
+      gap: 20px;
     }
-    .top h1 { margin: 0; font-size: 28px; font-weight: 800; }
-    .muted { color: var(--muted); font-size: 14px; }
+    .brand {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-dot {
+      width: 9px;
+      height: 9px;
+      background: #38bdf8;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #38bdf8;
+      animation: pulse 2.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    .brand span {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-    .user-badge {
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .nav-links a {
+      transition: var(--transition);
+      position: relative;
+      padding: 4px 0;
+    }
+    .nav-links a:hover { color: #fff; }
+
+    .btn-bookmark {
       background: rgba(30, 44, 74, 0.6);
-      border: 1px solid var(--line);
-      padding: 5px 12px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
       border-radius: 99px;
       font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-bookmark:hover {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: var(--cyan);
       color: var(--cyan);
+    }
+    .btn-bookmark span.count {
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 20px;
+    }
+
+    /* Adaptive Hero Grid */
+    .hero {
+      padding: 60px 0 35px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    .hero.has-spotlight {
+      grid-template-columns: 1.25fr 0.85fr;
+      align-items: stretch;
+    }
+    .hero:not(.has-spotlight) .hero-content-wrap {
+      max-width: 860px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      padding: 6px 12px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(34px, 4.2vw, 54px);
+      line-height: 1.15;
+      letter-spacing: -1.4px;
+      margin: 0 0 16px;
+      font-weight: 800;
+    }
+    .hero h1 span {
+      background: linear-gradient(100deg, #a5b4fc 10%, #38bdf8 60%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 16px;
+      max-width: 680px;
+      margin: 0 0 24px;
+      line-height: 1.7;
+    }
+
+    .search-wrapper {
+      position: relative;
+      display: flex;
+      max-width: 540px;
+    }
+    .search-wrapper input {
+      width: 100%;
+      background: rgba(17, 26, 46, 0.8);
+      border: 1px solid var(--border);
+      padding: 15px 48px 15px 18px;
+      border-radius: 14px;
+      color: #fff;
+      font: inherit;
+      outline: none;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    .search-wrapper input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+    .search-clear {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-size: 16px;
+      cursor: pointer;
+      display: none;
+    }
+    .search-clear.show { display: block; }
+
+    /* Spotlight Card */
+    .spotlight-card {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(23, 34, 60, 0.7), rgba(13, 20, 36, 0.95));
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+    .spotlight-card.hidden { display: none !important; }
+    .spotlight-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cyan);
+      box-shadow: 0 16px 40px rgba(56, 189, 248, 0.12);
+    }
+    .spotlight-thumb-wrap {
+      height: 180px;
+      overflow: hidden;
+      position: relative;
+    }
+    .spotlight-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .spotlight-card:hover .spotlight-thumb-wrap img {
+      transform: scale(1.05);
+    }
+    .spotlight-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+    .spotlight-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #38bdf8;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .spotlight-title {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin: 12px 0 8px;
+      color: #fff;
+    }
+    .spotlight-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin: 0;
+    }
+    .spotlight-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 14px;
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 15px;
+      margin: 40px 0 18px;
+    }
+    .section-head h2 { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+    .section-head p { margin: 4px 0 0; color: var(--text-muted); font-size: 14px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0 28px; }
+    .chip {
+      background: rgba(17, 26, 46, 0.6);
+      border: 1px solid var(--border);
+      padding: 9px 16px;
+      border-radius: 99px;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
+    .chip:hover {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: var(--accent);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .chip.active {
+      background: var(--accent-gradient);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
 
-    /* Live Analytics Grid */
-    .traffic-stats {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-bottom: 22px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-bottom: 40px;
     }
-    .traffic-card {
-      background: linear-gradient(145deg, rgba(17, 26, 46, 0.9), rgba(11, 16, 29, 0.95));
-      border: 1px solid var(--line);
+
+    .article {
+      border: 1px solid var(--border);
+      background: var(--bg-card);
       border-radius: var(--radius);
-      padding: 20px;
-      position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      position: relative;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
     }
-    .traffic-card::before {
+    .article:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-bright);
+      background: var(--bg-card-hover);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .thumb {
+      height: 190px;
+      position: relative;
+      background: linear-gradient(135deg, #18223c, #11182c);
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .article:hover .thumb img { transform: scale(1.06); }
+    .thumb-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(7, 10, 19, 0.75);
+      backdrop-filter: blur(8px);
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      padding: 4px 10px;
+      border-radius: 99px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-transform: uppercase;
+    }
+
+    .article-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .article h3 { font-size: 18px; font-weight: 700; line-height: 1.4; margin: 0 0 10px; color: #fff; }
+    .article p {
+      color: var(--text-muted);
+      font-size: 13.5px;
+      margin: 0 0 16px;
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .article-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-dim);
+      font-size: 12px;
+      font-weight: 500;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 14px;
+    }
+    .article-actions { display: flex; gap: 8px; }
+    .btn-icon-action {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 16px;
+      padding: 4px;
+      transition: color 0.2s;
+    }
+    .btn-icon-action:hover, .btn-icon-action.bookmarked { color: var(--cyan); }
+
+    .skeleton-card {
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      height: 380px;
+      overflow: hidden;
+      position: relative;
+    }
+    .skeleton-card::after {
       content: "";
       position: absolute;
+      inset: 0;
+      transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      animation: shimmer 1.5s infinite;
+    }
+    @keyframes shimmer { 100% { transform: translateX(100%); } }
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+    }
+
+    /* Live Adsterra Slots */
+    .live-ad-container {
+      margin: 34px auto;
+      text-align: center;
+      min-height: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .live-ad-container.hidden { display: none !important; }
+
+    .newsletter {
+      margin: 50px 0;
+      padding: 38px clamp(20px, 4vw, 44px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(23, 33, 60, 0.7) 0%, rgba(13, 20, 36, 0.95) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    .newsletter-text h2 { margin: 0 0 6px; font-size: 26px; font-weight: 800; }
+    .newsletter-text p { margin: 0; color: var(--text-muted); font-size: 15px; }
+    .newsletter-form { display: flex; gap: 10px; flex: 1; max-width: 440px; min-width: 260px; }
+    .newsletter-form input {
+      flex: 1;
+      background: rgba(11, 16, 29, 0.9);
+      border: 1px solid var(--border);
+      padding: 13px 16px;
+      border-radius: 12px;
+      color: #fff;
+      font: inherit;
+      outline: none;
+    }
+    .newsletter-form input:focus { border-color: var(--cyan); }
+    .btn-gradient {
+      border: 0;
+      background: var(--accent-gradient);
+      color: #fff;
+      padding: 13px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .btn-gradient:hover { opacity: 0.92; box-shadow: 0 4px 18px rgba(56, 189, 248, 0.3); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 34px 0;
+      color: var(--text-dim);
+      font-size: 13px;
+      margin-top: 40px;
+    }
+    .foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 16, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 100;
+      display: none;
+      overflow-y: auto;
+      padding: 24px 16px;
+    }
+    .modal.open { display: block; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .reading-bar {
+      position: fixed;
       top: 0;
       left: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--cyan);
+      height: 3px;
+      background: var(--accent-gradient);
+      width: 0%;
+      z-index: 110;
+      transition: width 0.1s linear;
     }
-    .traffic-card.today::before { background: var(--green); }
-    .traffic-card.week::before { background: var(--cyan); }
-    .traffic-card.month::before { background: var(--accent); }
-    .traffic-card.year::before { background: var(--amber); }
 
-    .traffic-card strong { display: block; font-size: 28px; font-weight: 800; color: #fff; margin-top: 4px; }
-    .traffic-card span { color: var(--muted); font-size: 12.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-    .traffic-card small { display: block; color: var(--dim); font-size: 11.5px; margin-top: 4px; }
-
-    /* Stats Grid */
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
-    .stat, .panel {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 22px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    .modal-inner {
+      max-width: 840px;
+      margin: 40px auto 60px;
+      background: #0f172a;
+      border: 1px solid var(--border-bright);
+      border-radius: 24px;
+      padding: clamp(24px, 5vw, 48px);
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
     }
-    .stat strong { display: block; font-size: 32px; font-weight: 800; color: #fff; }
-    .stat span { color: var(--muted); font-size: 13px; font-weight: 500; }
-
-    .btn {
-      padding: 11px 18px;
-      border: 0;
+    .modal-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: rgba(30, 41, 59, 0.8);
+      color: #fff;
+      border: 1px solid var(--border);
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), #38bdf8);
-      color: white;
-      font-weight: 700;
-      font-family: inherit;
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 18px;
+    }
+    .modal-close:hover {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: #ef4444;
+      color: #ef4444;
+    }
+    .modal-cover {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      display: none;
+    }
+    .modal-cat {
+      display: inline-block;
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .modal-title {
+      font-size: clamp(26px, 4vw, 38px);
+      line-height: 1.25;
+      font-weight: 800;
+      margin: 0 0 16px;
+      color: #fff;
+    }
+    .modal-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .modal-share { display: flex; gap: 10px; }
+    .share-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
       transition: var(--transition);
     }
-    .btn:hover { opacity: 0.93; transform: translateY(-1px); }
-    .btn.secondary { background: rgba(30, 44, 74, 0.8); border: 1px solid var(--line); color: #fff; }
-    .btn.secondary:hover { border-color: var(--cyan); }
-    .btn.danger { background: rgba(255, 82, 112, 0.15); border: 1px solid var(--red); color: #ff8599; }
-    .btn.danger:hover { background: var(--red); color: white; }
-    .btn.seed { background: linear-gradient(135deg, #059669, #10b981); color: white; }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    .formgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .field { display: flex; flex-direction: column; gap: 8px; }
-    .field.full { grid-column: 1 / -1; }
-    label { font-size: 13px; font-weight: 600; color: #cbd5e1; }
-    input, select, textarea {
-      width: 100%;
-      padding: 13px 15px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: #090e1b;
-      color: white;
-      font: inherit;
-      outline: none;
-      transition: var(--transition);
-    }
-    input:focus, select:focus, textarea:focus {
+    .share-btn:hover {
+      background: rgba(56, 189, 248, 0.12);
       border-color: var(--cyan);
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+      color: #fff;
     }
-    textarea { min-height: 90px; resize: vertical; }
-    .contentbox { min-height: 250px; line-height: 1.6; }
 
-    .spotlight-toggle-box {
+    .article-content {
+      color: #cbd5e1;
+      font-size: 16.5px;
+      line-height: 1.85;
+    }
+    .article-content p { margin: 18px 0; }
+    .article-content h2 { color: #fff; font-size: 24px; margin: 36px 0 16px; font-weight: 800; }
+    .article-content h3 { color: #f1f5f9; font-size: 20px; margin: 28px 0 12px; }
+    .article-content ul, .article-content ol { padding-left: 22px; margin: 16px 0; }
+    .article-content li { margin-bottom: 8px; }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(17, 26, 46, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--cyan);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      z-index: 200;
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      padding: 14px 18px;
-      border-radius: 14px;
-      cursor: pointer;
-    }
-    .spotlight-toggle-box input[type="checkbox"] {
-      width: 22px;
-      height: 22px;
-      accent-color: var(--cyan);
-      cursor: pointer;
-    }
-
-    .img-presets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-    .img-preset-btn {
-      background: rgba(30, 44, 74, 0.5);
-      border: 1px solid var(--line);
-      color: var(--muted);
-      padding: 5px 10px;
-      border-radius: 8px;
-      font-size: 11.5px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .img-preset-btn:hover { background: rgba(56, 189, 248, 0.15); border-color: var(--cyan); color: #fff; }
-    .img-preview {
-      width: 100%; height: 160px;
-      border-radius: 12px;
-      border: 1px dashed var(--line);
-      margin-top: 8px;
-      object-fit: cover;
-      display: none;
-    }
-
-    .tablewrap { overflow-x: auto; margin-top: 12px; }
-    table { border-collapse: collapse; width: 100%; min-width: 760px; }
-    th, td { text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--line); font-size: 13.5px; }
-    th { color: var(--muted); font-weight: 600; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .row-thumb {
-      width: 52px; height: 52px;
-      border-radius: 10px;
-      object-fit: cover;
-      border: 1px solid var(--line);
-      background: #111a2e;
-    }
-    .status {
-      border-radius: 99px;
-      padding: 4px 9px;
-      font-size: 11px;
-      font-weight: 700;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid var(--green);
-      color: #34d399;
-    }
-    .status.draft {
-      background: rgba(245, 158, 11, 0.15);
-      border: 1px solid #f59e0b;
-      color: #fbbf24;
-    }
-    .status.spotlight {
-      background: rgba(56, 189, 248, 0.18);
-      border: 1px solid var(--cyan);
-      color: var(--cyan);
-    }
-
-    .notice {
-      padding: 13px 18px;
-      border-radius: 12px;
-      background: #131c31;
-      border: 1px solid var(--line);
-      color: #cdd9ed;
+      gap: 10px;
       font-size: 13.5px;
-      margin-bottom: 20px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .notice.warn { background: rgba(245, 158, 11, 0.1); border-color: #f59e0b; color: #fde68a; }
-    .notice.error { background: rgba(255, 82, 112, 0.12); border-color: var(--red); color: #fecdd3; }
-
-    /* Ads Manager Box */
-    .ad-slot-box {
-      background: #090e1b;
-      border: 1px solid var(--line);
-      padding: 16px;
-      border-radius: 14px;
-      margin-bottom: 16px;
-    }
-    .ad-slot-box h3 { margin: 0 0 6px; font-size: 15px; color: #fff; }
-    .ad-slot-box p { margin: 0 0 10px; font-size: 12.5px; color: var(--muted); }
-
-    .hidden { display: none !important; }
-    .login { max-width: 440px; margin: 8vh auto; padding: 32px; border-radius: 20px; }
-    .login h1 { font-size: 26px; margin: 0 0 8px; }
+    .toast.show { transform: translateY(0); opacity: 1; }
 
     @media(max-width: 900px) {
-      .traffic-stats { grid-template-columns: repeat(2, 1fr); }
+      .hero.has-spotlight { grid-template-columns: 1fr; padding-top: 40px; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
     }
-    @media(max-width: 860px) {
-      .layout { grid-template-columns: 1fr; }
-      .side { border-right: 0; border-bottom: 1px solid var(--line); padding: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
-      .brand { margin: 0 16px 0 0; }
-      .side a.nav-link { padding: 8px 12px; margin: 0; }
-      .side small { display: none; }
-      .main { padding: 18px; }
-      .stats { grid-template-columns: 1fr; }
-      .formgrid { grid-template-columns: 1fr; }
-      .traffic-stats { grid-template-columns: 1fr; }
+    @media(max-width: 600px) {
+      .wrap { padding: 0 16px; }
+      .nav-links { display: none; }
+      .grid { grid-template-columns: 1fr; }
+      .newsletter-form { max-width: 100%; flex-direction: column; }
+      .modal-inner { padding: 24px 18px; margin: 20px auto; }
+      .modal-title { font-size: 24px; }
+      .hero h1 { font-size: 32px; }
     }
   </style>
 </head>
 <body>
 
-<div id="loginView" class="login panel">
-  <div class="brand">
-    <div class="brand-dot"></div>
-    TechPulse<span>AI</span>
-  </div>
-  <h1>Admin Portal</h1>
-  <p class="muted">সাইটের আর্টিকেল, ভিজিটর ও Adsterra অ্যাডস নিয়ন্ত্রণ।</p>
-  <div id="loginNotice" class="notice warn hidden"></div>
-  <form id="loginForm">
-    <div class="field" style="margin-bottom:14px;">
-      <label for="email">Admin Email</label>
-      <input id="email" type="email" placeholder="admin@example.com" required autocomplete="email">
-    </div>
-    <div class="field" style="margin-bottom:20px;">
-      <label for="password">Password</label>
-      <input id="password" type="password" required autocomplete="current-password">
-    </div>
-    <button class="btn" type="submit" id="loginBtn" style="width:100%;">Sign in to Admin Dashboard</button>
-  </form>
-  <div class="muted" style="font-size:12px;margin-top:16px;text-align:center;">
-    Authorized UID: <code>44Yk93PwfFbhnI4Fv1CsIavTQQo2</code>
-  </div>
-</div>
+  <div class="reading-bar" id="readingProgress"></div>
 
-<div id="appView" class="layout hidden">
-  <aside class="side">
-    <div class="brand">
-      <div class="brand-dot"></div>
-      TechPulse<span>AI</span>
-    </div>
-    <a class="nav-link active" data-target="dashboard">⚡ Dashboard & Traffic</a>
-    <a class="nav-link" data-target="editor">✍️ Write Article</a>
-    <a class="nav-link" data-target="posts">📚 All Articles</a>
-    <a class="nav-link" data-target="adsManager">📢 Ads Manager (Adsterra)</a>
-    <small>Public Portal</small>
-    <a class="nav-link" href="./techpulse_user.html" target="_blank" rel="noopener">↗ View Public Site</a>
-    <a class="nav-link" id="logoutLink" style="color:var(--red);margin-top:10px;">🚪 Sign out</a>
-  </aside>
+  <!-- Background injected Adsterra Popunder / Social Bar Scripts -->
+  <div id="adGlobalScripts"></div>
 
-  <main class="main">
-    <div class="top">
-      <div>
-        <h1 id="pageTitle">Content Dashboard</h1>
-        <div class="muted">Live Visitors Analytics &amp; Monetization Control</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;">
-        <span class="user-badge" id="userEmailBadge">Admin</span>
-        <span class="user-badge" style="color:var(--green);" id="modeLabel">● Live Cloud Active</span>
+  <header class="top">
+    <div class="wrap nav">
+      <a class="brand" href="./techpulse_user.html">
+        <div class="brand-dot"></div>
+        TechPulse<span>AI</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#latest">Latest Articles</a>
+        <a href="#categories">Explore Topics</a>
+        <a href="#newsletter">Newsletter</a>
+        <a href="./techpulse_admin_fixed.html" target="_blank" rel="noopener">Admin Portal ↗</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn-bookmark" id="bookmarkFilterBtn">
+          🔖 Saved <span class="count" id="bookmarkCount">0</span>
+        </button>
       </div>
     </div>
+  </header>
 
-    <div class="notice" id="globalNotice">Firebase Cloud Firestore ও লাইভ ট্রাফিক ট্র্যাকার সংযুক্ত রয়েছে।</div>
+  <main class="wrap">
 
-    <!-- 1. DASHBOARD & LIVE TRAFFIC TAB -->
-    <section id="dashboard" class="content-section">
-      
-      <!-- REAL-TIME VISITOR ANALYTICS CARDS -->
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-        <h2 style="margin:0;font-size:18px;">📊 লাইভ ভিজিটর ট্র্যাকিং (Real-Time Visitor Analytics)</h2>
-        <span class="muted" style="font-size:12.5px;">● প্রতি ১০ সেকেন্ডে লাইভ রিফ্রেশ হয়</span>
-      </div>
-
-      <div class="traffic-stats">
-        <div class="traffic-card today">
-          <span>আজকের ভিজিটর (Today)</span>
-          <strong id="statToday">0</strong>
-          <small id="statTodayViews">0 মোট পেজভিউ</small>
-        </div>
-        <div class="traffic-card week">
-          <span>এই সপ্তাহের ভিজিটর (This Week)</span>
-          <strong id="statWeek">0</strong>
-          <small>গত ৭ দিনের সর্বমোট ইউনিক হিট</small>
-        </div>
-        <div class="traffic-card month">
-          <span>এই মাসের ভিজিটর (This Month)</span>
-          <strong id="statMonth">0</strong>
-          <small>গত ৩০ দিনের অ্যাক্টিভ পাঠক</small>
-        </div>
-        <div class="traffic-card year">
-          <span>এই বছরের মোট ভিজিটর (This Year)</span>
-          <strong id="statYear">0</strong>
-          <small>বার্ষিক সার্বিক ট্রাফিক রিপোর্ট</small>
+    <section class="hero" id="heroSection">
+      <div class="hero-content-wrap">
+        <div class="eyebrow">✦ The TechPulse Intelligence</div>
+        <h1>Understand the future.<br><span>One insight at a time.</span></h1>
+        <p>কৃত্রিম বুদ্ধিমত্তা, বিশ্বমানের টুলস, সেমিকন্ডাক্টর বিপ্লব ও সাইবার ডিফেন্সের ওপর প্রফেশনাল অ্যানালাইসিস এবং প্র্যাকটিক্যাল গাইড।</p>
+        
+        <div class="search-wrapper">
+          <input id="searchInput" type="search" placeholder="Search AI tools, prompt engineering, chipsets, tutorials…" aria-label="Search articles">
+          <button class="search-clear" id="searchClear" aria-label="Clear search">✕</button>
         </div>
       </div>
 
-      <!-- ARTICLES STATS -->
-      <div class="stats">
-        <div class="stat"><strong id="totalCount">0</strong><span>Total Articles</span></div>
-        <div class="stat"><strong id="publishedCount">0</strong><span style="color:var(--green)">Published Live</span></div>
-        <div class="stat"><strong id="draftCount">0</strong><span style="color:#fbbf24">Drafts</span></div>
-      </div>
-
-      <div class="panel">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+      <!-- Spotlight Feature Card -->
+      <div class="spotlight-card hidden" id="spotlightCard">
+        <div class="spotlight-thumb-wrap">
+          <img id="spotlightImage" src="" alt="Featured story cover">
+        </div>
+        <div class="spotlight-content">
           <div>
-            <h2 style="margin:0;font-size:18px;">⚡ Database Synchronization</h2>
-            <div class="muted" style="font-size:13px;">রিয়েল ছবি ও কনটেন্ট এক ক্লিকে ফায়ারস্টোর ক্লাউডে সিঙ্ক করুন।</div>
+            <div class="spotlight-badge">✦ Spotlight Feature</div>
+            <h2 class="spotlight-title" id="spotlightTitle"></h2>
+            <p class="spotlight-desc" id="spotlightExcerpt"></p>
           </div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <button type="button" class="btn seed" id="seedFirestoreBtn">⚡ Sync Real Articles to Firestore</button>
-            <button type="button" class="btn" id="dashWriteBtn">+ New Article</button>
+          <div class="spotlight-footer">
+            <span id="spotlightMeta">TechPulse AI</span>
+            <span>Read Insight →</span>
           </div>
-        </div>
-
-        <div class="tablewrap">
-          <table>
-            <thead>
-              <tr>
-                <th style="width:60px;">Photo</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Status</th>
-                <th>Spotlight</th>
-                <th>Date</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="recentRows">
-              <tr><td colspan="7">Loading articles…</td></tr>
-            </tbody>
-          </table>
         </div>
       </div>
     </section>
 
-    <!-- 2. ADS MANAGER TAB (ADSTERRA INTEGRATION) -->
-    <section class="panel content-section hidden" id="adsManager">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
+    <!-- LIVE ADSTERRA BANNER SLOT 1 (728x90 or Native Banner) -->
+    <div class="live-ad-container hidden" id="liveMainBannerAd"></div>
+
+    <!-- Categories Filters -->
+    <div class="section-head" id="categories">
+      <div>
+        <h2>Explore topics</h2>
+        <p>আপনার পছন্দের প্রযুক্তি বিভাগ বেছে নিন</p>
+      </div>
+    </div>
+
+    <div class="chips" id="chips">
+      <button class="chip active" data-cat="All">✦ All Topics</button>
+      <button class="chip" data-cat="AI Tools">⚡ AI Tools</button>
+      <button class="chip" data-cat="AI News">🗞️ AI News</button>
+      <button class="chip" data-cat="How-to">🧭 How-to</button>
+      <button class="chip" data-cat="Tech">💻 Tech</button>
+      <button class="chip" data-cat="SEO">🎯 SEO</button>
+    </div>
+
+    <!-- Latest Articles Feed -->
+    <section id="latest">
+      <div class="section-head">
         <div>
-          <h2 style="margin:0;font-size:20px;">📢 Adsterra Ads Configuration</h2>
-          <div class="muted">ইউজার ওয়েবসাইটে Adsterra-এর বিজ্ঞাপন নিয়ন্ত্রণ করার ড্যাশবোর্ড</div>
+          <h2 id="feedTitle">Latest Publications</h2>
+          <p id="feedSubtitle">সর্বশেষ প্রকাশিত আর্টিকেলের তালিকা</p>
         </div>
-        <button type="button" class="btn" id="saveAdsBtn">💾 Save &amp; Apply Ads Live</button>
+        <div id="articleCounter" style="color:var(--cyan);font-weight:700;font-size:14px;">Loading…</div>
       </div>
 
-      <div class="notice" style="background:rgba(56,189,248,0.08);border-color:rgba(56,189,248,0.25);">
-        <div>
-          <strong>Adsterra থেকে কীভাবে কোড নিবেন:</strong><br>
-          ১. <a href="https://adsterra.com/" target="_blank" style="color:var(--cyan);text-decoration:underline;">Adsterra.com</a>-এ লগইন করে <strong>Websites</strong> ট্যাবে আপনার সাইটের লিংক যোগ করুন।<br>
-          ২. <strong>Add Unit</strong> চাপুন। Popunder, Social Bar, 728x90 Banner বা Native Banners সিলেক্ট করে কোড জেনারেট করুন।<br>
-          ৩. জেনারেট হওয়া সম্পূর্ণ স্ক্রিপ্ট কোডটি হুবহু নিচের নির্দিষ্ট ফিল্ডগুলোতে পেস্ট করে <strong>"Save &amp; Apply Ads Live"</strong> বাটনে চাপ দিন।
-        </div>
-      </div>
-
-      <!-- Master Switch -->
-      <div class="spotlight-toggle-box" style="margin-bottom:20px;" onclick="document.getElementById('adsEnabled').click();">
-        <input type="checkbox" id="adsEnabled" onclick="event.stopPropagation();" checked>
-        <div>
-          <label for="adsEnabled" style="cursor:pointer;font-size:15px;color:#fff;font-weight:700;">
-            ✦ Enable Ads on User Website (বিজ্ঞাপন প্রদর্শন চালু রাখুন)
-          </label>
-          <div class="muted" style="font-size:12.5px;">এই বক্সটি আনচেক করলে পুরো সাইট থেকে সাময়িকভাবে সব বিজ্ঞাপন বন্ধ থাকবে।</div>
-        </div>
-      </div>
-
-      <!-- Slot 1: Popunder / Smart Direct Link -->
-      <div class="ad-slot-box">
-        <h3>1. Popunder Code (সবচেয়ে বেশি আয়ের বিজ্ঞাপন)</h3>
-        <p>ভিজিটর প্রথমবার ওয়েবসাইটে কোথাও ক্লিক করলে নতুন ট্যাবে অ্যাড ওপেন হবে। Adsterra থেকে পাওয়া <code>&lt;script&gt;</code> কোডটি এখানে পেস্ট করুন।</p>
-        <textarea id="adPopunder" placeholder="<script type='text/javascript' src='//your-adsterra-popunder-url.js'></script>"></textarea>
-      </div>
-
-      <!-- Slot 2: Social Bar / In-Page Push -->
-      <div class="ad-slot-box">
-        <h3>2. Social Bar / In-Page Push (ভাসমান আকর্ষক নোটিফিকেশন অ্যাড)</h3>
-        <p>মোবাইল ও পিসিতে স্ক্রিনের এক কোণায় ছোট নোটিফিকেশনের মতো ভেসে থাকবে।</p>
-        <textarea id="adSocialBar" placeholder="<script type='text/javascript' src='//your-adsterra-socialbar-url.js'></script>"></textarea>
-      </div>
-
-      <!-- Slot 3: Main Header/Feed Banner (728x90 বা 468x60 বা Native Banner) -->
-      <div class="ad-slot-box">
-        <h3>3. Main Top/Feed Banner (মূল ব্যানার বিজ্ঞাপন)</h3>
-        <p>ইউজার ওয়েবসাইটের হিরো সেকশন এবং লেটেস্ট পাবলিকেশনসের মাঝখানের ব্যানার স্লটে এটি প্রদর্শিত হবে।</p>
-        <textarea id="adMainBanner" placeholder="<script type='text/javascript'> atOptions = { 'key' : '...', 'format' : 'iframe', 'height' : 90, 'width' : 728 }; </script>&#10;<script type='text/javascript' src='//.../invoke.js'></script>"></textarea>
-      </div>
-
-      <!-- Slot 4: Article Reader Modal Banner (ইন-আর্টিকেল ব্যানার) -->
-      <div class="ad-slot-box">
-        <h3>4. In-Article Modal Banner (আর্টিকেলের ভেতরের বিজ্ঞাপন)</h3>
-        <p>ভিজিটর যখন কোনো আর্টিকেলের ওপর ক্লিক করে সম্পূর্ণ পোস্টটি পড়বে, তখন আর্টিকেলের নিচে এই ব্যানারটি দেখাবে।</p>
-        <textarea id="adArticleModal" placeholder="<script type='text/javascript' src='//your-in-article-banner-code.js'></script>"></textarea>
+      <div class="grid" id="articlesGrid">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
       </div>
     </section>
 
-    <!-- 3. ARTICLE EDITOR TAB -->
-    <section class="panel content-section hidden" id="editor">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
-        <h2 id="editorHeading" style="margin:0;font-size:20px;">✍️ Write a new article</h2>
-        <button type="button" class="btn secondary" id="backToPostsBtn">← Cancel & View All</button>
+    <section class="newsletter" id="newsletter">
+      <div class="newsletter-text">
+        <h2>Stay ahead of the curve.</h2>
+        <p>সপ্তাহে ১টি কিউরেটেড AI ডাইজেস্ট ও এক্সক্লুসিভ টেক আপডেট সরাসরি আপনার ইনবক্সে।</p>
       </div>
-
-      <form id="articleForm">
-        <input type="hidden" id="articleId">
-        <div class="formgrid">
-          
-          <div class="field full">
-            <div class="spotlight-toggle-box" onclick="document.getElementById('isSpotlight').click();">
-              <input type="checkbox" id="isSpotlight" onclick="event.stopPropagation();">
-              <div>
-                <label for="isSpotlight" style="cursor:pointer;font-size:14px;color:#fff;font-weight:700;">
-                  ✦ Feature as Hero Spotlight (ইউজার ওয়েবসাইটের উপরে কোণায় স্পটলাইট হিসেবে দেখান)
-                </label>
-                <div class="muted" style="font-size:12px;margin-top:2px;">
-                  এই বক্সে টিক দিলে ইউজার সাইটের হিরো সেকশনে এটি হাইলাইট হবে। আনচেক রাখলে সেখানে কোনো ভাসমান বক্স থাকবে না।
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="field full">
-            <label for="title">Article Title *</label>
-            <input id="title" required maxlength="150" placeholder="e.g. ২০২৬ সালের সেরা ৫টি AI Productivity Tools">
-          </div>
-          <div class="field">
-            <label for="category">Category *</label>
-            <select id="category">
-              <option>AI Tools</option>
-              <option>AI News</option>
-              <option>How-to</option>
-              <option>Tech</option>
-              <option>SEO</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="status">Publication Status</label>
-            <select id="status">
-              <option value="published">Publish (Public Site)</option>
-              <option value="draft">Draft (Private)</option>
-            </select>
-          </div>
-
-          <div class="field full">
-            <label for="image">Featured Image URL (High-Res Photo)</label>
-            <input id="image" type="url" placeholder="https://images.unsplash.com/photo-...">
-            
-            <div class="img-presets">
-              <span class="muted" style="font-size:12px;display:flex;align-items:center;">Click to select preset real picture:</span>
-              <button type="button" class="img-preset-btn" data-url="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80">🧠 AI Neural Core</button>
-              <button type="button" class="img-preset-btn" data-url="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80">🤖 Robot Agent</button>
-              <button type="button" class="img-preset-btn" data-url="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80">⚡ 2nm Silicon Chip</button>
-              <button type="button" class="img-preset-btn" data-url="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80">💻 Prompt Engineering</button>
-              <button type="button" class="img-preset-btn" data-url="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80">📈 SEO & Analytics</button>
-              <button type="button" class="img-preset-btn" data-url="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80">🔒 Cyber Defense</button>
-            </div>
-            <img id="imagePreview" class="img-preview" alt="Image preview">
-          </div>
-
-          <div class="field">
-            <label for="date">Publish Date</label>
-            <input id="date" type="date">
-          </div>
-          <div class="field">
-            <label for="readTime">Estimated Reading Time</label>
-            <input id="readTime" value="5 min read">
-          </div>
-
-          <div class="field full">
-            <label for="excerpt">Short Excerpt (Cards & Feed Preview) *</label>
-            <textarea id="excerpt" required maxlength="300" placeholder="আর্টিকেলের মূল বিষয়বস্তুর সংক্ষিপ্ত সারসংক্ষেপ লিখুন…"></textarea>
-          </div>
-
-          <div class="field full">
-            <label for="content">Full Article Content (HTML Supported) *</label>
-            <textarea id="content" class="contentbox" required placeholder="<p>বিস্তারিত আর্টিকেল লিখুন...</p>&#10;<h2>মূল পয়েন্ট</h2>&#10;<p>ব্যাখ্যা...</p>"></textarea>
-          </div>
-
-          <div class="field">
-            <label for="seoTitle">SEO Meta Title (Optional)</label>
-            <input id="seoTitle" maxlength="70" placeholder="Google search title">
-          </div>
-          <div class="field">
-            <label for="keywords">Target Keywords (Optional)</label>
-            <input id="keywords" placeholder="AI tools, ChatGPT, tech guide">
-          </div>
-          <div class="field full">
-            <label for="seoDescription">SEO Meta Description (Optional)</label>
-            <textarea id="seoDescription" maxlength="160" placeholder="Search result summary"></textarea>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:12px;margin-top:20px;">
-          <button class="btn" type="submit" id="saveButton">Save & Publish</button>
-          <button class="btn secondary" type="button" id="resetButton">Clear Form</button>
-        </div>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" id="newsletterEmail" placeholder="yourname@gmail.com" required>
+        <button type="submit" class="btn-gradient">Subscribe Free</button>
       </form>
     </section>
 
-    <!-- 4. ALL ARTICLES TAB -->
-    <section class="panel content-section hidden" id="posts">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px;">
-        <h2 style="margin:0;font-size:20px;">📚 All Articles Database</h2>
-        <button type="button" class="btn" id="postsWriteBtn">+ Add New Post</button>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 220px;gap:12px;margin-bottom:16px;">
-        <input id="filterInput" placeholder="Search by title, excerpt or keywords…">
-        <select id="categoryFilter">
-          <option value="">All Categories</option>
-          <option value="AI Tools">AI Tools</option>
-          <option value="AI News">AI News</option>
-          <option value="How-to">How-to</option>
-          <option value="Tech">Tech</option>
-          <option value="SEO">SEO</option>
-        </select>
-      </div>
-
-      <div class="tablewrap">
-        <table>
-          <thead>
-            <tr>
-              <th style="width:60px;">Photo</th>
-              <th>Article</th>
-              <th>Category</th>
-              <th>Status</th>
-              <th>Spotlight</th>
-              <th>Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="articleRows">
-            <tr><td colspan="7">Loading articles…</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
   </main>
-</div>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-  import { 
-    getAuth, 
-    signInWithEmailAndPassword, 
-    onAuthStateChanged, 
-    signOut 
-  } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-  import { 
-    getFirestore, 
-    collection, 
-    doc, 
-    getDoc,
-    getDocs, 
-    setDoc,
-    addDoc, 
-    updateDoc, 
-    deleteDoc,
-    onSnapshot
-  } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <strong>TechPulse AI</strong> &copy; <span id="year"></span>. All rights reserved. 
+        <div style="margin-top:4px;color:var(--text-dim);font-size:12px;">Powered by Cloud Firestore &amp; Modular Web SDK.</div>
+      </div>
+      <div>
+        <a href="#latest" style="margin-right:16px;">Top Articles</a>
+        <a href="#newsletter" style="margin-right:16px;">Newsletter</a>
+        <a href="./techpulse_admin_fixed.html" style="color:var(--cyan);">Staff Portal</a>
+      </div>
+    </div>
+  </footer>
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDxrDLw4HIRj3YpLJANsKOsSBES0YiV1I4",
-    authDomain: "techpulse-ai-f9ee6.firebaseapp.com",
-    projectId: "techpulse-ai-f9ee6",
-    storageBucket: "techpulse-ai-f9ee6.firebasestorage.app",
-    messagingSenderId: "891719470718",
-    appId: "1:891719470718:web:32da5cf6436aa1926cd22f",
-    measurementId: "G-ES8BL3Y9K5"
-  };
+  <div class="modal" id="articleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-inner">
+      <button class="modal-close" id="closeModal" aria-label="Close modal">✕</button>
+      <img id="modalCover" class="modal-cover" alt="Article Cover">
+      
+      <span id="modalCat" class="modal-cat">Technology</span>
+      <h1 id="modalTitle" class="modal-title"></h1>
+      
+      <div class="modal-meta-row">
+        <div id="modalMeta"></div>
+        <div class="modal-share">
+          <button class="share-btn" id="copyLinkBtn">🔗 Copy Link</button>
+          <button class="share-btn" id="modalBookmarkBtn">🔖 Bookmark</button>
+        </div>
+      </div>
 
-  const AUTHORIZED_ADMIN_UID = "44Yk93PwfFbhnI4Fv1CsIavTQQo2";
+      <div id="modalContent" class="article-content"></div>
 
-  const masterArticles = [
-    {
-      title: "২০২৬ সালের সেরা ৫টি AI Productivity Tools যা কাজের গতি ১০ গুণ বাড়াবে",
-      category: "AI Tools",
-      status: "published",
-      isSpotlight: true,
-      excerpt: "রিসার্চ, কোডিং ও কনটেন্ট স্ট্র্যাটেজিতে বাস্তব সময় বাঁচাতে বিশ্বসেরা ৫টি এআই টুলের কার্যপদ্ধতি ও সঠিক ব্যবহার।",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
-      content: "<p>কৃত্রিম বুদ্ধিমত্তা এখন আর কেবল চ্যাটবক্সে সীমাবদ্ধ নয়; এটি আধুনিক কাজের প্রতিটি ধাপে একটি শক্তিশালী সহকারীর রূপ নিয়েছে। সঠিক টুলস বাছাই করতে পারলে প্রতিদিনের কাজের বড় একটি অংশ স্বয়ংক্রিয় করা সম্ভব।</p><h2>১. অটোনোমাস রিসার্চ ও অ্যানালাইসিস</h2><p>প্রতিদিনের ডকুমেন্ট এনালাইসিস এবং বড় ডাটাবেস থেকে প্রয়োজনীয় তথ্য কয়েক সেকেন্ডে সামারাইজ করতে আধুনিক AI মডেলগুলো অতুলনীয়। এগুলো তথ্য ফিল্টার করে নির্ভুল অন্তর্দৃষ্টি প্রদান করে।</p><h2>২. কনটেক্সট-অ্যাওয়ার কোডিং সহকারী</h2><p>প্রোগ্রামারদের জন্য কার্সার ও কোপাইলট ধাঁচের টুলগুলো কোড লেখার গতি বাড়িয়ে দিচ্ছে বহুগুণ। কেবল কোড জেনারেশন নয়, বাগ ফিক্সিং এবং রিফ্যাক্টরিংয়েও এটি কার্যকর।</p><h2>সতর্কতা ও সেরা অভ্যাস</h2><ul><li>AI-এর দেওয়া যেকোনো ফলাফল ব্যবহারের আগে নিজে একবার যাচাই (Fact Check) করুন।</li><li>সংবেদনশীল প্রাতিষ্ঠানিক পাসওয়ার্ড বা প্রাইভেট ডাটা প্রম্পটে শেয়ার করা থেকে বিরত থাকুন।</li></ul>",
-      date: "2026-10-29",
-      readTime: "5 min read",
-      seoTitle: "Best AI Productivity Tools 2026",
-      seoDescription: "২০২৬ সালের সেরা ৫টি AI Productivity Tools এর বিস্তারিত রিভিউ ও ব্যবহারিক টিপস।",
-      keywords: "AI tools, productivity, automation"
-    },
-    {
-      title: "অটোনোমাস এআই এজেন্টস: সফটওয়্যার ইন্ডাস্ট্রিতে নতুন কাজের বিপ্লব",
-      category: "AI News",
-      status: "published",
-      isSpotlight: false,
-      excerpt: "একক কমান্ডে মাল্টিপল সফটওয়্যার কন্ট্রোল এবং জটিল টাস্ক নিজে নিজে সম্পন্ন করার Agentic AI ফ্রেমওয়ার্ক নিয়ে বিস্তারিত।",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80",
-      content: "<p>প্রম্পটের উত্তর দেওয়ার যুগ পেরিয়ে বিশ্ব এখন প্রবেশ করেছে 'Agentic Workflows'-এর যুগে। যেখানে একটি এআই কেবল নির্দেশনা শোনে না, বরং স্বয়ংক্রিয়ভাবে একটির পর একটি ধাপ এক্সিকিউট করে মূল লক্ষ্যে পৌঁছায়।</p>",
-      date: "2026-10-28",
-      readTime: "6 min read",
-      seoTitle: "Autonomous AI Agents in Software Industry",
-      seoDescription: "অটোনোমাস এআই এজেন্টস কীভাবে প্রযুক্তি শিল্পকে রূপান্তর করছে তার বিশ্লেষণ।",
-      keywords: "Autonomous AI, AI News, Agentic Workflows"
-    },
-    {
-      title: "পরবর্তী প্রজন্মের ২-ন্যানোমিটার চিপ ও লোকাল অন-ডিভাইস এআই",
-      category: "Tech",
-      status: "published",
-      isSpotlight: false,
-      excerpt: "ইন্টারনেট কানেকশন ছাড়াই স্মার্টফোন ও ল্যাপটপে দ্রুতগতির এআই রান করার সেমিকন্ডাক্টর বিপ্লব।",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
-      content: "<p>ক্লাউড সার্ভারের ওপর অতিরিক্ত নির্ভরতা কমিয়ে ব্যক্তিগত ডিভাইসেই এআই মডেল চালানোর লক্ষ্য নিয়ে হাজির হয়েছে ২-ন্যানোমিটার আর্কিটেকচার।</p>",
-      date: "2026-10-27",
-      readTime: "4 min read",
-      seoTitle: "Next-Gen 2nm Chips and On-Device AI",
-      seoDescription: "২-ন্যানোমিটার চিপ প্রযুক্তি ও অফলাইন এআই এক্সিকিউশন।",
-      keywords: "Hardware, Semiconductors, 2nm Chip"
-    },
-    {
-      title: "প্রম্পট ইঞ্জিনিয়ারিং মাস্টারক্লাস: সঠিক উত্তরে পৌঁছানোর ৭টি প্রমাণিত নিয়ম",
-      category: "How-to",
-      status: "published",
-      isSpotlight: false,
-      excerpt: "অস্পষ্ট প্রম্পটের পরিবর্তে সুনির্দিষ্ট আউটপুট পেতে রোল-অ্যাসাইনমেন্ট ও ফিউ-শট প্রম্পটিংয়ের ব্যবহারিক নিয়ম।",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
-      content: "<p>এআই-এর আউটপুট সম্পূর্ণ নির্ভর করে আপনার প্রম্পটের স্পষ্টতার ওপর। সঠিক শব্দচয়ন এবং কাঠামোগত নির্দেশনাই পারে একটি সাধারণ উত্তরকে অসাধারণ করে তুলতে।</p>",
-      date: "2026-10-26",
-      readTime: "5 min read",
-      seoTitle: "Prompt Engineering Masterclass",
-      seoDescription: "সঠিক প্রম্পট লেখার সহজ ও শক্তিশালী কৌশল শিখুন।",
-      keywords: "Prompt Engineering, How-to, AI Tips"
-    },
-    {
-      title: "গুগল এআই ওভারভিউয়ের যুগে এসইও ও অর্গানিক ট্রাফিক বৃদ্ধির কৌশল",
-      category: "SEO",
-      status: "published",
-      isSpotlight: false,
-      excerpt: "সার্চ ইঞ্জিনের জেনারেটিভ ফলাফলে আপনার কনটেন্ট ফিচার করার এবং সরাসরি ভিজিটর আকর্ষণের টেকনিক্যাল ফ্রেমওয়ার্ক।",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-      content: "<p>সার্চ রেজাল্টে এআই ওভারভিউ আসার পর কেবল কিওয়ার্ড স্টাফিং করে আর প্রথম পেজে র‍্যাঙ্ক পাওয়া সম্ভব নয়।</p>",
-      date: "2026-10-25",
-      readTime: "6 min read",
-      seoTitle: "SEO Strategy for AI Overviews",
-      seoDescription: "এআই ওভারভিউ যুগে ব্লগে অর্গানিক ট্রাফিক পাওয়ার এসইও গাইড।",
-      keywords: "SEO, AI Overviews, Organic Traffic"
-    },
-    {
-      title: "সাইবার নিরাপত্তায় ডিফেন্সিভ এআই: আধুনিক সাইবার থ্রেটের নতুন সুরক্ষা কবচ",
-      category: "AI News",
-      status: "published",
-      isSpotlight: false,
-      excerpt: "অটোমেটেড ফিশিং ও জিরো-ডে অ্যাটাক প্রতিহত করতে স্বয়ংক্রিয় এআই ফায়ারওয়াল ও এনক্রিপশনের ব্যবহারিক প্রয়োগ।",
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
-      content: "<p>আধুনিক সাইবার হামলাগুলো এখন স্বয়ংক্রিয় স্ক্রিপ্ট দিয়ে পরিচালিত হচ্ছে। ফলে গতানুগতিক সিকিউরিটি প্যাচ দিয়ে এগুলো ঠেকানো প্রায় অসম্ভব।</p>",
-      date: "2026-10-24",
-      readTime: "5 min read",
-      seoTitle: "Defensive AI in Modern Cybersecurity",
-      seoDescription: "সাইবার নিরাপত্তা ও ডিফেন্সিভ এআই নিয়ে বিস্তারিত প্রতিবেদন।",
-      keywords: "Cybersecurity, Defensive AI, Tech Defense"
-    }
-  ];
+      <!-- IN-ARTICLE LIVE ADSTERRA BANNER SLOT -->
+      <div class="live-ad-container hidden" id="liveArticleAd" style="margin-top:28px;"></div>
+    </div>
+  </div>
 
-  let app, auth, db;
-  let articles = [];
+  <div class="toast" id="toastBox">
+    <span id="toastIcon">✦</span>
+    <span id="toastMsg">Notification message</span>
+  </div>
 
-  const $ = (id) => document.getElementById(id);
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import { 
+      getFirestore, 
+      collection, 
+      doc,
+      getDoc,
+      setDoc,
+      query, 
+      where, 
+      getDocs,
+      increment
+    } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-  try {
-    app = initializeApp(firebaseConfig);
-    auth = getAuth(app);
-    db = getFirestore(app);
-  } catch (err) {
-    console.error("Firebase Init Error:", err);
-    notify("Firebase init error: " + err.message, "error");
-  }
-
-  function esc(s = "") {
-    return String(s).replace(/[&<>"']/g, (c) => ({
-      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-    }[c]));
-  }
-
-  function notify(msg, type = "info") {
-    const el = $("globalNotice");
-    el.textContent = msg;
-    el.className = "notice" + (type === "warn" ? " warn" : type === "error" ? " error" : "");
-  }
-
-  function setLoginNotice(msg, type = "warn") {
-    const el = $("loginNotice");
-    if (!msg) {
-      el.classList.add("hidden");
-      el.textContent = "";
-      return;
-    }
-    el.className = "notice " + (type === "error" ? "error" : "warn");
-    el.textContent = msg;
-    el.classList.remove("hidden");
-  }
-
-  function switchTab(targetId) {
-    const valid = ["dashboard", "editor", "posts", "adsManager"];
-    if (!valid.includes(targetId)) targetId = "dashboard";
-
-    document.querySelectorAll(".side a.nav-link[data-target]").forEach((link) => {
-      link.classList.toggle("active", link.dataset.target === targetId);
-    });
-
-    valid.forEach((id) => {
-      const el = $(id);
-      if (el) el.classList.toggle("hidden", id !== targetId);
-    });
-
-    if (targetId === "dashboard") $("pageTitle").textContent = "Dashboard & Live Traffic";
-    if (targetId === "editor") $("pageTitle").textContent = "Article Editor";
-    if (targetId === "posts") $("pageTitle").textContent = "All Articles Database";
-    if (targetId === "adsManager") $("pageTitle").textContent = "Adsterra Ads Configuration";
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  document.querySelectorAll(".side a.nav-link[data-target]").forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const target = link.dataset.target;
-      if (target === "editor") resetForm();
-      switchTab(target);
-    });
-  });
-
-  $("dashWriteBtn").onclick = () => { resetForm(); switchTab("editor"); };
-  $("postsWriteBtn").onclick = () => { resetForm(); switchTab("editor"); };
-  $("backToPostsBtn").onclick = () => switchTab("posts");
-
-  function updateImagePreview(url) {
-    const prev = $("imagePreview");
-    if (url && url.startsWith("http")) {
-      prev.src = url;
-      prev.style.display = "block";
-    } else {
-      prev.style.display = "none";
-    }
-  }
-
-  $("image").addEventListener("input", (e) => updateImagePreview(e.target.value.trim()));
-
-  document.querySelectorAll(".img-preset-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const u = btn.dataset.url;
-      $("image").value = u;
-      updateImagePreview(u);
-    });
-  });
-
-  function resetForm() {
-    $("articleForm").reset();
-    $("articleId").value = "";
-    $("isSpotlight").checked = false;
-    $("date").value = new Date().toISOString().slice(0, 10);
-    $("readTime").value = "5 min read";
-    $("editorHeading").textContent = "✍️ Write a new article";
-    $("saveButton").textContent = "Save & Publish";
-    updateImagePreview("");
-  }
-
-  function formData() {
-    return {
-      title: $("title").value.trim(),
-      category: $("category").value,
-      status: $("status").value,
-      isSpotlight: $("isSpotlight").checked,
-      excerpt: $("excerpt").value.trim(),
-      image: $("image").value.trim(),
-      date: $("date").value || new Date().toISOString().slice(0, 10),
-      readTime: $("readTime").value.trim() || "5 min read",
-      content: $("content").value.trim(),
-      seoTitle: $("seoTitle").value.trim(),
-      seoDescription: $("seoDescription").value.trim(),
-      keywords: $("keywords").value.trim(),
-      updatedAt: new Date().toISOString()
+    const firebaseConfig = {
+      apiKey: "AIzaSyDxrDLw4HIRj3YpLJANsKOsSBES0YiV1I4",
+      authDomain: "techpulse-ai-f9ee6.firebaseapp.com",
+      projectId: "techpulse-ai-f9ee6",
+      storageBucket: "techpulse-ai-f9ee6.firebasestorage.app",
+      messagingSenderId: "891719470718",
+      appId: "1:891719470718:web:32da5cf6436aa1926cd22f",
+      measurementId: "G-ES8BL3Y9K5"
     };
-  }
 
-  function makeRow(a) {
-    const photo = a.image 
-      ? `<img src="${esc(a.image)}" class="row-thumb" alt="thumbnail">`
-      : `<div class="row-thumb" style="display:grid;place-items:center;font-size:20px;">📄</div>`;
-
-    const isSp = a.isSpotlight ? `<span class="status spotlight">✦ Active</span>` : `<span class="muted" style="font-size:12px;">No</span>`;
-
-    return `
-      <tr>
-        <td>${photo}</td>
-        <td>
-          <strong style="color:#fff;">${esc(a.title)}</strong><br>
-          <span class="muted" style="font-size:12px;">${esc(a.excerpt || "").slice(0, 65)}...</span>
-        </td>
-        <td>${esc(a.category || "General")}</td>
-        <td><span class="status ${a.status === 'published' ? '' : 'draft'}">${a.status === 'published' ? 'Published' : 'Draft'}</span></td>
-        <td>${isSp}</td>
-        <td>${esc(a.date || "")}</td>
-        <td>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;">
-            <button type="button" class="btn secondary" style="padding:6px 10px;font-size:11px;" data-toggle-spotlight="${esc(a.id)}">${a.isSpotlight ? '★ Unset' : '☆ Set Spotlight'}</button>
-            <button type="button" class="btn secondary" style="padding:6px 10px;font-size:11px;" data-edit="${esc(a.id)}">Edit</button>
-            <button type="button" class="btn danger" style="padding:6px 10px;font-size:11px;" data-delete="${esc(a.id)}">Delete</button>
-          </div>
-        </td>
-      </tr>
-    `;
-  }
-
-  function renderRows() {
-    const term = ($("filterInput").value || "").toLowerCase();
-    const cat = $("categoryFilter").value;
-
-    const list = articles.filter((a) => {
-      const matchText = ((a.title || "") + " " + (a.excerpt || "") + " " + (a.category || "")).toLowerCase().includes(term);
-      const matchCat = !cat || a.category === cat;
-      return matchText && matchCat;
-    });
-
-    $("totalCount").textContent = articles.length;
-    $("publishedCount").textContent = articles.filter((a) => a.status === "published").length;
-    $("draftCount").textContent = articles.filter((a) => a.status !== "published").length;
-
-    $("articleRows").innerHTML = list.length
-      ? list.map(makeRow).join("")
-      : `<tr><td colspan="7">কোনো আর্টিকেল পাওয়া যায়নি।</td></tr>`;
-
-    const recent = articles.slice(0, 6);
-    $("recentRows").innerHTML = recent.length
-      ? recent.map(makeRow).join("")
-      : `<tr><td colspan="7">কোনো আর্টিকেল নেই। উপরে "Sync Real Articles to Firestore" বাটনে ক্লিক করুন।</td></tr>`;
-  }
-
-  function saveToLocalStorage(data) {
-    try {
-      localStorage.setItem('techpulse_articles', JSON.stringify(data));
-    } catch (_) {}
-  }
-
-  async function loadFirebaseArticles() {
-    $("articleRows").innerHTML = "<tr><td colspan=\"7\">Loading articles…</td></tr>";
-    let loaded = false;
-    try {
-      const snap = await getDocs(collection(db, "articles"));
-      if (!snap.empty) {
-        articles = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-        loaded = true;
+    const masterArticles = [
+      {
+        id: 'article_1',
+        title: "২০২৬ সালের সেরা ৫টি AI Productivity Tools যা কাজের গতি ১০ গুণ বাড়াবে",
+        category: "AI Tools",
+        status: "published",
+        isSpotlight: true,
+        excerpt: "রিসার্চ, কোডিং ও কনটেন্ট স্ট্র্যাটেজিতে বাস্তব সময় বাঁচাতে বিশ্বসেরা ৫টি এআই টুলের কার্যপদ্ধতি ও সঠিক ব্যবহার।",
+        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+        content: "<p>কৃত্রিম বুদ্ধিমত্তা এখন আর কেবল চ্যাটবক্সে সীমাবদ্ধ নয়; এটি আধুনিক কাজের প্রতিটি ধাপে একটি শক্তিশালী সহকারীর রূপ নিয়েছে। সঠিক টুলস বাছাই করতে পারলে প্রতিদিনের কাজের বড় একটি অংশ স্বয়ংক্রিয় করা সম্ভব।</p><h2>১. অটোনোমাস রিসার্চ ও অ্যানালাইসিস</h2><p>প্রতিদিনের ডকুমেন্ট এনালাইসিস এবং বড় ডাটাবেস থেকে প্রয়োজনীয় তথ্য কয়েক সেকেন্ডে সামারাইজ করতে আধুনিক AI মডেলগুলো অতুলনীয়। এগুলো তথ্য ফিল্টার করে নির্ভুল অন্তর্দৃষ্টি প্রদান করে।</p><h2>২. কনটেক্সট-অ্যাওয়ার কোডিং সহকারী</h2><p>প্রোগ্রামারদের জন্য কার্সার ও কোপাইলট ধাঁচের টুলগুলো কোড লেখার গতি বাড়িয়ে দিচ্ছে বহুগুণ। কেবল কোড জেনারেশন নয়, বাগ ফিক্সিং এবং রিফ্যাক্টরিংয়েও এটি কার্যকর।</p><h2>সতর্কতা ও সেরা অভ্যাস</h2><ul><li>AI-এর দেওয়া যেকোনো ফলাফল ব্যবহারের আগে নিজে একবার যাচাই (Fact Check) করুন।</li><li>সংবেদনশীল প্রাতিষ্ঠানিক পাসওয়ার্ড বা প্রাইভেট ডাটা প্রম্পটে শেয়ার করা থেকে বিরত থাকুন।</li></ul>",
+        date: "2026-10-29",
+        readTime: "5 min read"
+      },
+      {
+        id: 'article_2',
+        title: "অটোনোমাস এআই এজেন্টস: সফটওয়্যার ইন্ডাস্ট্রিতে নতুন কাজের বিপ্লব",
+        category: "AI News",
+        status: "published",
+        isSpotlight: false,
+        excerpt: "একক কমান্ডে মাল্টিপল সফটওয়্যার কন্ট্রোল এবং জটিল টাস্ক নিজে নিজে সম্পন্ন করার Agentic AI ফ্রেমওয়ার্ক নিয়ে বিস্তারিত।",
+        image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1200&q=80",
+        content: "<p>প্রম্পটের উত্তর দেওয়ার যুগ পেরিয়ে বিশ্ব এখন প্রবেশ করেছে 'Agentic Workflows'-এর যুগে। যেখানে একটি এআই কেবল নির্দেশনা শোনে না, বরং স্বয়ংক্রিয়ভাবে একটির পর একটি ধাপ এক্সিকিউট করে মূল লক্ষ্যে পৌঁছায়।</p>",
+        date: "2026-10-28",
+        readTime: "6 min read"
+      },
+      {
+        id: 'article_3',
+        title: "পরবর্তী প্রজন্মের ২-ন্যানোমিটার চিপ ও লোকাল অন-ডিভাইস এআই",
+        category: "Tech",
+        status: "published",
+        isSpotlight: false,
+        excerpt: "ইন্টারনেট কানেকশন ছাড়াই স্মার্টফোন ও ল্যাপটপে দ্রুতগতির এআই রান করার সেমিকন্ডাক্টর বিপ্লব।",
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+        content: "<p>ক্লাউড সার্ভারের ওপর অতিরিক্ত নির্ভরতা কমিয়ে ব্যক্তিগত ডিভাইসেই এআই মডেল চালানোর লক্ষ্য নিয়ে হাজির হয়েছে ২-ন্যানোমিটার আর্কিটেকচার।</p>",
+        date: "2026-10-27",
+        readTime: "4 min read"
+      },
+      {
+        id: 'article_4',
+        title: "প্রম্পট ইঞ্জিনিয়ারিং মাস্টারক্লাস: সঠিক উত্তরে পৌঁছানোর ৭টি প্রমাণিত নিয়ম",
+        category: "How-to",
+        status: "published",
+        isSpotlight: false,
+        excerpt: "অস্পষ্ট প্রম্পটের পরিবর্তে সুনির্দিষ্ট আউটপুট পেতে রোল-অ্যাসাইনমেন্ট ও ফিউ-শট প্রম্পটিংয়ের ব্যবহারিক নিয়ম।",
+        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80",
+        content: "<p>এআই-এর আউটপুট সম্পূর্ণ নির্ভর করে আপনার প্রম্পটের স্পষ্টতার ওপর। সঠিক শব্দচয়ন এবং কাঠামোগত নির্দেশনাই পারে একটি সাধারণ উত্তরকে অসাধারণ করে তুলতে।</p>",
+        date: "2026-10-26",
+        readTime: "5 min read"
+      },
+      {
+        id: 'article_5',
+        title: "গুগল এআই ওভারভিউয়ের যুগে এসইও ও অর্গানিক ট্রাফিক বৃদ্ধির কৌশল",
+        category: "SEO",
+        status: "published",
+        isSpotlight: false,
+        excerpt: "সার্চ ইঞ্জিনের জেনারেটিভ ফলাফলে আপনার কনটেন্ট ফিচার করার এবং সরাসরি ভিজিটর আকর্ষণের টেকনিক্যাল ফ্রেমওয়ার্ক।",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+        content: "<p>সার্চ রেজাল্টে এআই ওভারভিউ আসার পর কেবল কিওয়ার্ড স্টাফিং করে আর প্রথম পেজে র‍্যাঙ্ক পাওয়া সম্ভব নয়।</p>",
+        date: "2026-10-25",
+        readTime: "6 min read"
+      },
+      {
+        id: 'article_6',
+        title: "সাইবার নিরাপত্তায় ডিফেন্সিভ এআই: আধুনিক সাইবার থ্রেটের নতুন সুরক্ষা কবচ",
+        category: "AI News",
+        status: "published",
+        isSpotlight: false,
+        excerpt: "অটোমেটেড ফিশিং ও জিরো-ডে অ্যাটাক প্রতিহত করতে স্বয়ংক্রিয় এআই ফায়ারওয়াল ও এনক্রিপশনের ব্যবহারিক প্রয়োগ।",
+        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80",
+        content: "<p>আধুনিক সাইবার হামলাগুলো এখন স্বয়ংক্রিয় স্ক্রিপ্ট দিয়ে পরিচালিত হচ্ছে। ফলে গতানুগতিক সিকিউরিটি প্যাচ দিয়ে এগুলো ঠেকানো প্রায় অসম্ভব।</p>",
+        date: "2026-10-24",
+        readTime: "5 min read"
       }
-    } catch (err) {
-      console.warn("Firestore access error, falling back to local cache:", err);
+    ];
+
+    let allArticles = [];
+    let activeCategory = 'All';
+    let searchTerm = '';
+    let showOnlyBookmarks = false;
+    let currentOpenArticleId = null;
+
+    const $ = (id) => document.getElementById(id);
+    $('year').textContent = new Date().getFullYear();
+
+    function esc(s = '') {
+      return String(s).replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
     }
 
-    if (!loaded || !articles.length) {
+    function showToast(msg, icon = '✦') {
+      const toast = $('toastBox');
+      $('toastIcon').textContent = icon;
+      $('toastMsg').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function getBookmarks() {
       try {
-        const local = JSON.parse(localStorage.getItem('techpulse_articles') || 'null');
-        if (Array.isArray(local) && local.length) {
-          articles = local;
-        } else {
-          articles = masterArticles.map((x, i) => ({ id: 'article_' + (i + 1), ...x }));
-        }
-      } catch (_) {
-        articles = masterArticles.map((x, i) => ({ id: 'article_' + (i + 1), ...x }));
-      }
+        return JSON.parse(localStorage.getItem('techpulse_bookmarks') || '[]');
+      } catch { return []; }
     }
 
-    saveToLocalStorage(articles);
-    articles.sort((a, b) => new Date(b.date || b.createdAt || 0) - new Date(a.date || a.createdAt || 0));
-    renderRows();
-  }
-
-  // --- REAL-TIME VISITOR ANALYTICS ENGINE ---
-  async function initAnalyticsEngine() {
-    const today = new Date().toISOString().slice(0, 10);
-    const now = new Date();
-
-    // Setup Real-time listener for today's live hits
-    try {
-      onSnapshot(doc(db, "analytics", today), (snap) => {
-        if (snap.exists()) {
-          const d = snap.data();
-          $("statToday").textContent = (d.visitors || 0).toLocaleString();
-          $("statTodayViews").textContent = `${(d.views || 0).toLocaleString()} মোট পেজভিউ`;
-        }
-      });
-    } catch (e) {
-      console.warn("Realtime traffic listener init notice:", e);
-    }
-
-    // Load Aggregated Stats (Weekly, Monthly, Yearly)
-    try {
-      const snap = await getDocs(collection(db, "analytics"));
-      let dailyMap = {};
-
-      if (!snap.empty) {
-        snap.docs.forEach(docSnap => {
-          dailyMap[docSnap.id] = docSnap.data();
-        });
+    function toggleBookmark(id) {
+      let bms = getBookmarks();
+      const idx = bms.indexOf(String(id));
+      let isSaved = false;
+      if (idx > -1) {
+        bms.splice(idx, 1);
+        showToast('Removed from bookmarks', '🗑️');
       } else {
-        dailyMap = JSON.parse(localStorage.getItem("techpulse_traffic_db") || "{}");
+        bms.push(String(id));
+        isSaved = true;
+        showToast('Article saved to bookmarks!', '🔖');
       }
-
-      // Calculate totals
-      let todayVis = 0, todayViews = 0;
-      let weekVis = 0, monthVis = 0, yearVis = 0;
-
-      const currentYear = now.getFullYear();
-      const currentMonth = today.slice(0, 7); // YYYY-MM
-      const sevenDaysAgo = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
-
-      Object.keys(dailyMap).forEach(dt => {
-        const item = dailyMap[dt];
-        const v = item.visitors || 0;
-        const w = item.views || 0;
-
-        if (dt === today) {
-          todayVis = v;
-          todayViews = w;
-        }
-        if (dt >= sevenDaysAgo) {
-          weekVis += v;
-        }
-        if (dt.startsWith(currentMonth)) {
-          monthVis += v;
-        }
-        if (dt.startsWith(String(currentYear))) {
-          yearVis += v;
-        }
-      });
-
-      $("statToday").textContent = todayVis.toLocaleString();
-      $("statTodayViews").textContent = `${todayViews.toLocaleString()} মোট পেজভিউ`;
-      $("statWeek").textContent = weekVis.toLocaleString();
-      $("statMonth").textContent = monthVis.toLocaleString();
-      $("statYear").textContent = yearVis.toLocaleString();
-
-    } catch (err) {
-      console.warn("Analytics calculation notice:", err);
-    }
-  }
-
-  // --- ADSTERRA ADS CONFIGURATION LOGIC ---
-  async function loadAdsSettings() {
-    let adsData = null;
-    try {
-      const snap = await getDoc(doc(db, "settings", "adsterra"));
-      if (snap.exists()) adsData = snap.data();
-    } catch (_) {}
-
-    if (!adsData) {
-      try {
-        adsData = JSON.parse(localStorage.getItem("techpulse_ads_config") || "null");
-      } catch (_) {}
+      localStorage.setItem('techpulse_bookmarks', JSON.stringify(bms));
+      updateBookmarkUI();
+      render();
+      return isSaved;
     }
 
-    if (adsData) {
-      $("adsEnabled").checked = adsData.enabled !== false;
-      $("adPopunder").value = adsData.popunder || "";
-      $("adSocialBar").value = adsData.socialBar || "";
-      $("adMainBanner").value = adsData.mainBanner || "";
-      $("adArticleModal").value = adsData.articleModal || "";
-    }
-  }
-
-  $("saveAdsBtn").addEventListener("click", async () => {
-    const btn = $("saveAdsBtn");
-    btn.disabled = true;
-    btn.textContent = "Saving to Cloud…";
-
-    const adsConfig = {
-      enabled: $("adsEnabled").checked,
-      popunder: $("adPopunder").value.trim(),
-      socialBar: $("adSocialBar").value.trim(),
-      mainBanner: $("adMainBanner").value.trim(),
-      articleModal: $("adArticleModal").value.trim(),
-      updatedAt: new Date().toISOString()
-    };
-
-    try {
-      await setDoc(doc(db, "settings", "adsterra"), adsConfig, { merge: true });
-      localStorage.setItem("techpulse_ads_config", JSON.stringify(adsConfig));
-      notify("Adsterra বিজ্ঞাপন সফলভাবে ক্লাউডে সেভ করা হয়েছে এবং লাইভ প্রয়োগ করা হয়েছে!");
-    } catch (err) {
-      console.warn("Firestore ads save error, stored in localStorage:", err);
-      localStorage.setItem("techpulse_ads_config", JSON.stringify(adsConfig));
-      notify("বিজ্ঞাপন সেটিংস ব্রাউজারে সংরক্ষিত হয়েছে।", "warn");
-    } finally {
-      btn.disabled = false;
-      btn.textContent = "💾 Save & Apply Ads Live";
-    }
-  });
-
-  $("seedFirestoreBtn").addEventListener("click", async () => {
-    if (!confirm("আপনি কি আনস্প্ল্যাশের রিয়েল ছবিসহ আর্টিকেলগুলো ফায়ারস্টোর ক্লাউডে সিঙ্ক করতে চান?")) return;
-
-    const btn = $("seedFirestoreBtn");
-    btn.disabled = true;
-    btn.textContent = "Syncing to Cloud…";
-
-    try {
-      for (const item of masterArticles) {
-        await addDoc(collection(db, "articles"), {
-          ...item,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString()
-        });
+    function updateBookmarkUI() {
+      const bms = getBookmarks();
+      $('bookmarkCount').textContent = bms.length;
+      if (currentOpenArticleId) {
+        const isB = bms.includes(String(currentOpenArticleId));
+        $('modalBookmarkBtn').textContent = isB ? '🔖 Saved' : '🔖 Bookmark';
       }
-      notify("সফলভাবে সমস্ত রিয়েল ছবি ও প্রফেশনাল কন্টেন্ট Firestore-এ সিঙ্ক হয়েছে!");
-      await loadFirebaseArticles();
-      switchTab("posts");
-    } catch (err) {
-      notify("Sync failed: " + err.message, "error");
-    } finally {
-      btn.disabled = false;
-      btn.textContent = "⚡ Sync Real Articles to Firestore";
     }
-  });
 
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      if (user.uid !== AUTHORIZED_ADMIN_UID) {
-        await signOut(auth);
-        $("appView").classList.add("hidden");
-        $("loginView").classList.remove("hidden");
-        setLoginNotice(`Access Denied: আপনার অ্যাকাউন্টটি অ্যাডমিন প্যানেলে অনুমোদিত নয় (UID: ${user.uid})`, "error");
+    function renderSpotlight() {
+      const hero = $('heroSection');
+      const card = $('spotlightCard');
+
+      const spotlightArticle = allArticles.find((a) => a.isSpotlight === true && (a.status === 'published' || a.status === undefined));
+
+      if (!spotlightArticle) {
+        card.classList.add('hidden');
+        hero.classList.remove('has-spotlight');
         return;
       }
-      $("loginView").classList.add("hidden");
-      $("appView").classList.remove("hidden");
-      $("userEmailBadge").textContent = user.email || "Admin";
-      switchTab("dashboard");
-      await loadFirebaseArticles();
-      await loadAdsSettings();
-      await initAnalyticsEngine();
-    } else {
-      $("appView").classList.add("hidden");
-      $("loginView").classList.remove("hidden");
-    }
-  });
 
-  $("loginForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = $("email").value.trim();
-    const password = $("password").value;
-    const btn = $("loginBtn");
+      card.classList.remove('hidden');
+      hero.classList.add('has-spotlight');
 
-    btn.disabled = true;
-    btn.textContent = "Signing in…";
-    setLoginNotice("");
-
-    try {
-      const cred = await signInWithEmailAndPassword(auth, email, password);
-      if (cred.user.uid !== AUTHORIZED_ADMIN_UID) {
-        await signOut(auth);
-        throw new Error(`অননুমোদিত UID (${cred.user.uid})`);
+      $('spotlightTitle').textContent = spotlightArticle.title;
+      $('spotlightExcerpt').textContent = spotlightArticle.excerpt || '';
+      $('spotlightMeta').textContent = `${spotlightArticle.category || 'Tech'} · ${spotlightArticle.readTime || '5 min'}`;
+      if (spotlightArticle.image) {
+        $('spotlightImage').src = spotlightArticle.image;
+        $('spotlightImage').style.display = 'block';
       }
-    } catch (err) {
-      setLoginNotice(err.message, "error");
-    } finally {
-      btn.disabled = false;
-      btn.textContent = "Sign in to Admin Dashboard";
-    }
-  });
-
-  $("logoutLink").addEventListener("click", async (e) => {
-    e.preventDefault();
-    await signOut(auth);
-    articles = [];
-    resetForm();
-    $("appView").classList.add("hidden");
-    $("loginView").classList.remove("hidden");
-    setLoginNotice("লগআউট সম্পন্ন হয়েছে।", "warn");
-  });
-
-  $("articleForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const id = $("articleId").value;
-    const data = formData();
-
-    if (!data.title || !data.excerpt || !data.content) {
-      notify("Title, excerpt এবং content অবশ্যই পূরণ করুন।", "warn");
-      return;
+      card.onclick = () => openArticle(spotlightArticle.id);
     }
 
-    const saveBtn = $("saveButton");
-    saveBtn.disabled = true;
-    saveBtn.textContent = "Saving…";
+    function makeCard(a) {
+      const bms = getBookmarks();
+      const isBookmarked = bms.includes(String(a.id));
 
-    try {
-      if (data.isSpotlight) {
-        articles.forEach(a => { if (String(a.id) !== id) a.isSpotlight = false; });
-      }
+      return `
+        <article class="article" data-id="${esc(a.id)}">
+          <div class="thumb" onclick="window.appOpenArticle('${esc(a.id)}')">
+            <span class="thumb-tag">${esc(a.category || 'Tech')}</span>
+            <img src="${esc(a.image)}" alt="${esc(a.title)}" loading="lazy">
+          </div>
+          <div class="article-body">
+            <h3 onclick="window.appOpenArticle('${esc(a.id)}')" style="cursor:pointer;">${esc(a.title)}</h3>
+            <p>${esc(a.excerpt || '')}</p>
+            <div class="article-meta">
+              <span>${esc(a.date || '')} · ${esc(a.readTime || '5 min read')}</span>
+              <div class="article-actions">
+                <button type="button" class="btn-icon-action ${isBookmarked ? 'bookmarked' : ''}" title="Bookmark" onclick="window.appToggleBookmark('${esc(a.id)}', event)">
+                  ${isBookmarked ? '★' : '☆'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      `;
+    }
 
-      if (id) {
-        if (!id.startsWith("article_")) {
-          await updateDoc(doc(db, "articles", id), data);
-        }
-        articles = articles.map(a => String(a.id) === id ? { ...a, ...data } : a);
-        notify("আর্টিকেল সফলভাবে আপডেট করা হয়েছে।");
+    function render() {
+      const bms = getBookmarks();
+      let list = allArticles.filter((a) => (a.status === 'published' || a.status === undefined));
+
+      if (showOnlyBookmarks) {
+        list = list.filter((a) => bms.includes(String(a.id)));
+        $('feedTitle').textContent = 'Saved Articles';
+        $('feedSubtitle').textContent = 'আপনার বুকমার্ক করা আর্টিকেলের সংগ্রহ';
       } else {
-        data.createdAt = new Date().toISOString();
-        let newId = 'article_' + Date.now();
-        try {
-          const docRef = await addDoc(collection(db, "articles"), data);
-          newId = docRef.id;
-        } catch (_) {}
-        articles.unshift({ id: newId, ...data });
-        notify(data.status === "published" ? "আর্টিকেল প্রকাশ করা হয়েছে।" : "Draft সংরক্ষিত হয়েছে।");
-      }
-
-      saveToLocalStorage(articles);
-      resetForm();
-      renderRows();
-      switchTab("posts");
-    } catch (err) {
-      notify("Save failed: " + err.message, "error");
-    } finally {
-      saveBtn.disabled = false;
-      saveBtn.textContent = id ? "Update & Save" : "Save & Publish";
-    }
-  });
-
-  async function handleTableClick(e) {
-    const editBtn = e.target.closest("[data-edit]");
-    const delBtn = e.target.closest("[data-delete]");
-    const toggleSpotBtn = e.target.closest("[data-toggle-spotlight]");
-
-    if (toggleSpotBtn) {
-      const targetId = toggleSpotBtn.dataset.toggleSpotlight;
-      const a = articles.find(x => String(x.id) === targetId);
-      if (!a) return;
-
-      const newSpotState = !a.isSpotlight;
-      if (newSpotState) {
-        articles.forEach(x => { x.isSpotlight = false; });
-      }
-      a.isSpotlight = newSpotState;
-
-      if (!targetId.startsWith("article_")) {
-        try {
-          await updateDoc(doc(db, "articles", targetId), { isSpotlight: a.isSpotlight });
-        } catch (_) {}
-      }
-
-      saveToLocalStorage(articles);
-      renderRows();
-      notify(a.isSpotlight ? `"${a.title}" স্পটলাইটে যুক্ত করা হয়েছে!` : `স্পটলাইট রিমুভ করা হয়েছে।`);
-      return;
-    }
-
-    if (editBtn) {
-      const targetId = editBtn.dataset.edit;
-      const a = articles.find((x) => String(x.id) === targetId);
-      if (!a) return;
-
-      $("articleId").value = a.id;
-      const fields = ["title", "category", "status", "excerpt", "image", "date", "readTime", "content", "seoTitle", "seoDescription", "keywords"];
-      fields.forEach((k) => {
-        if ($(k)) $(k).value = a[k] || "";
-      });
-
-      $("isSpotlight").checked = !!a.isSpotlight;
-      updateImagePreview(a.image || "");
-      $("editorHeading").textContent = "✍️ Edit article";
-      $("saveButton").textContent = "Update & Save";
-      switchTab("editor");
-    }
-
-    if (delBtn) {
-      const targetId = delBtn.dataset.delete;
-      const a = articles.find((x) => String(x.id) === targetId);
-      if (confirm(`আপনি কি "${a ? a.title : 'এই আর্টিকেলটি'}" মুছে ফেলতে চান?`)) {
-        delBtn.disabled = true;
-        delBtn.textContent = "…";
-        if (!targetId.startsWith("article_")) {
-          deleteDoc(doc(db, "articles", targetId)).catch(() => {});
+        $('feedTitle').textContent = 'Latest Publications';
+        $('feedSubtitle').textContent = 'সর্বশেষ প্রকাশিত আর্টিকেলের তালিকা';
+        if (activeCategory !== 'All') {
+          list = list.filter((a) => a.category === activeCategory);
         }
-        articles = articles.filter(x => String(x.id) !== targetId);
-        saveToLocalStorage(articles);
-        notify("আর্টিকেল সফলভাবে মুছে ফেলা হয়েছে।");
-        renderRows();
+      }
+
+      if (searchTerm) {
+        const q = searchTerm.toLowerCase();
+        list = list.filter((a) =>
+          ((a.title || '') + ' ' + (a.excerpt || '') + ' ' + (a.category || '')).toLowerCase().includes(q)
+        );
+      }
+
+      $('articleCounter').textContent = `${list.length} Articles`;
+      const grid = $('articlesGrid');
+
+      if (!list.length) {
+        grid.innerHTML = `
+          <div class="empty">
+            <p>কোনো আর্টিকেল খুঁজে পাওয়া যায়নি।</p>
+            <small style="color:var(--text-dim)">অন্য কি-ওয়ার্ড দিয়ে সার্চ করুন অথবা ক্যাটাগরি ফিল্টার রিসেট করুন।</small>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = list.map(makeCard).join('');
+    }
+
+    $('chips').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-cat]');
+      if (!b) return;
+      showOnlyBookmarks = false;
+      activeCategory = b.dataset.cat;
+      document.querySelectorAll('.chip').forEach((x) => x.classList.toggle('active', x === b));
+      render();
+    });
+
+    $('bookmarkFilterBtn').addEventListener('click', () => {
+      showOnlyBookmarks = !showOnlyBookmarks;
+      $('bookmarkFilterBtn').style.borderColor = showOnlyBookmarks ? 'var(--cyan)' : 'var(--border)';
+      render();
+    });
+
+    $('searchInput').addEventListener('input', (e) => {
+      searchTerm = e.target.value.trim();
+      $('searchClear').classList.toggle('show', !!searchTerm);
+      render();
+    });
+
+    $('searchClear').addEventListener('click', () => {
+      $('searchInput').value = '';
+      searchTerm = '';
+      $('searchClear').classList.remove('show');
+      render();
+    });
+
+    window.appOpenArticle = (id) => openArticle(id);
+    window.appToggleBookmark = (id, event) => {
+      if (event) event.stopPropagation();
+      toggleBookmark(id);
+    };
+
+    function openArticle(id) {
+      const a = allArticles.find((x) => String(x.id) === String(id));
+      if (!a) return;
+
+      currentOpenArticleId = a.id;
+      $('modalCat').textContent = a.category || 'Technology';
+      $('modalTitle').textContent = a.title;
+      $('modalMeta').textContent = `${a.date || 'Recent'} · ${a.readTime || '5 min read'} · TechPulse Editorial`;
+
+      const cover = $('modalCover');
+      if (a.image) {
+        cover.src = a.image;
+        cover.style.display = 'block';
+      } else {
+        cover.style.display = 'none';
+      }
+
+      $('modalContent').innerHTML = a.content || `<p>${esc(a.excerpt || '')}</p>`;
+      $('articleModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      history.replaceState(null, '', `#article-${a.id}`);
+      updateBookmarkUI();
+      $('articleModal').scrollTop = 0;
+    }
+
+    function closeModal() {
+      $('articleModal').classList.remove('open');
+      document.body.style.overflow = '';
+      $('readingProgress').style.width = '0%';
+      currentOpenArticleId = null;
+      history.replaceState(null, '', window.location.pathname);
+    }
+
+    $('closeModal').addEventListener('click', closeModal);
+    $('articleModal').addEventListener('click', (e) => {
+      if (e.target.id === 'articleModal') closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    $('articleModal').addEventListener('scroll', () => {
+      const modal = $('articleModal');
+      const total = modal.scrollHeight - modal.clientHeight;
+      if (total > 0) {
+        const pct = (modal.scrollTop / total) * 100;
+        $('readingProgress').style.width = pct + '%';
+      }
+    });
+
+    $('copyLinkBtn').addEventListener('click', () => {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('Link copied to clipboard!', '🔗');
+      }).catch(() => {
+        showToast('Link: ' + url, '🔗');
+      });
+    });
+
+    $('modalBookmarkBtn').addEventListener('click', () => {
+      if (currentOpenArticleId) {
+        toggleBookmark(currentOpenArticleId);
+      }
+    });
+
+    $('newsletterForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = $('newsletterEmail').value.trim();
+      if (!email) return;
+      $('newsletterEmail').value = '';
+      showToast('Thank you for subscribing to TechPulse AI!', '🚀');
+    });
+
+    // --- SCRIPT INJECTOR FOR ADSTERRA ADS ---
+    function injectAdScript(containerEl, htmlString) {
+      if (!containerEl || !htmlString || !htmlString.trim()) {
+        if (containerEl) containerEl.classList.add('hidden');
+        return;
+      }
+      containerEl.innerHTML = '';
+      containerEl.classList.remove('hidden');
+
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = htmlString;
+
+      Array.from(wrapper.childNodes).forEach(node => {
+        if (node.tagName === 'SCRIPT') {
+          const script = document.createElement('script');
+          Array.from(node.attributes).forEach(attr => script.setAttribute(attr.name, attr.value));
+          script.textContent = node.textContent;
+          containerEl.appendChild(script);
+        } else {
+          containerEl.appendChild(node.cloneNode(true));
+        }
+      });
+    }
+
+    // --- ADSTERRA ADS LOADER ---
+    async function loadAndExecuteAds(db) {
+      let adsConfig = null;
+      try {
+        const snap = await getDoc(doc(db, "settings", "adsterra"));
+        if (snap.exists()) adsConfig = snap.data();
+      } catch (_) {}
+
+      if (!adsConfig) {
+        try {
+          adsConfig = JSON.parse(localStorage.getItem("techpulse_ads_config") || "null");
+        } catch (_) {}
+      }
+
+      if (!adsConfig || adsConfig.enabled === false) {
+        $('liveMainBannerAd')?.classList.add('hidden');
+        $('liveArticleAd')?.classList.add('hidden');
+        return;
+      }
+
+      // Inject Global Scripts (Popunder + Social Bar)
+      const globalAdContainer = $('adGlobalScripts');
+      if (globalAdContainer) {
+        if (adsConfig.popunder) injectAdScript(globalAdContainer, adsConfig.popunder);
+        if (adsConfig.socialBar) injectAdScript(globalAdContainer, adsConfig.socialBar);
+      }
+
+      // Inject Main Feed Banner
+      if (adsConfig.mainBanner) {
+        injectAdScript($('liveMainBannerAd'), adsConfig.mainBanner);
+      }
+
+      // Inject In-Article Modal Banner
+      if (adsConfig.articleModal) {
+        injectAdScript($('liveArticleAd'), adsConfig.articleModal);
       }
     }
-  }
 
-  $("articleRows").addEventListener("click", handleTableClick);
-  $("recentRows").addEventListener("click", handleTableClick);
+    // --- VISITOR TRACKING RECORDER (RUNS IN BACKGROUND) ---
+    async function recordVisit(db) {
+      const today = new Date().toISOString().slice(0, 10);
+      const isNewVisitor = !sessionStorage.getItem("tp_visitor_logged");
+      sessionStorage.setItem("tp_visitor_logged", "1");
 
-  $("filterInput").addEventListener("input", renderRows);
-  $("categoryFilter").addEventListener("change", renderRows);
-  $("resetButton").addEventListener("click", resetForm);
+      // 1. Local backup cache
+      try {
+        let stats = JSON.parse(localStorage.getItem("techpulse_traffic_db") || "{}");
+        if (!stats[today]) stats[today] = { views: 0, visitors: 0 };
+        stats[today].views = (stats[today].views || 0) + 1;
+        if (isNewVisitor) stats[today].visitors = (stats[today].visitors || 0) + 1;
+        localStorage.setItem("techpulse_traffic_db", JSON.stringify(stats));
+      } catch (_) {}
 
-  $("date").value = new Date().toISOString().slice(0, 10);
-</script>
+      // 2. Cloud Firestore Real-time increment
+      try {
+        const dayRef = doc(db, "analytics", today);
+        await setDoc(dayRef, {
+          date: today,
+          views: increment(1),
+          visitors: isNewVisitor ? increment(1) : increment(0),
+          lastVisit: new Date().toISOString()
+        }, { merge: true });
+      } catch (err) {
+        // Silent fail: Never block the website
+      }
+    }
+
+    async function init() {
+      updateBookmarkUI();
+      let loadedFromFirebase = false;
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // Silent visitor count
+      recordVisit(db);
+
+      // Load Ads
+      loadAndExecuteAds(db);
+
+      try {
+        const q = query(collection(db, 'articles'), where('status', '==', 'published'));
+        const snap = await getDocs(q);
+
+        if (!snap.empty) {
+          allArticles = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          loadedFromFirebase = true;
+        }
+      } catch (err) {
+        console.warn('Firestore sync note:', err);
+      }
+
+      if (!loadedFromFirebase || !allArticles.length) {
+        try {
+          const local = JSON.parse(localStorage.getItem('techpulse_articles') || 'null');
+          if (Array.isArray(local) && local.length) {
+            allArticles = local.filter((x) => x.status === 'published');
+          }
+        } catch (_) {}
+
+        if (!allArticles.length) {
+          allArticles = [...masterArticles];
+        }
+      }
+
+      allArticles.sort((a, b) => new Date(b.date || b.createdAt || 0) - new Date(a.date || a.createdAt || 0));
+
+      renderSpotlight();
+      render();
+
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#article-')) {
+        const targetId = hash.replace('#article-', '');
+        setTimeout(() => openArticle(targetId), 250);
+      }
+    }
+
+    init();
+  </script>
 </body>
 </html>
